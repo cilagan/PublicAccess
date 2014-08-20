@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Add Products</title>
-<script src="js/jquery-1.7.1.min.js" type="text/javascript"></script>
-<script src="js/jquery-ui-1.8.18.custom.min.js" type="text/javascript"></script>
-<script src="js/RPPR_general.js" type="text/javascript"></script>
-<script src="js/displayTagAjax.js" type="text/javascript"></script>
+<title>Public Access Proof of Concept</title>
+<script type="text/javascript" src="js/lib/angular.min.js"></script>
+<script type="text/javascript" src="js/controllers/app.js"></script>
+<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="css/bootstrap-responsive.min.css">
 <link rel="stylesheet" href="css/RPPR_screen.css" type="text/css" media="screen" />
 <link rel="stylesheet" href="css/jquery-ui-1.8.18.custom.css" type="text/css" media="screen" />
 <!--[if lte IE 7]>
@@ -15,14 +15,14 @@
 <link rel="stylesheet" href="css/RPPR_print.css" type="text/css" media="print" />
 </head>
 <body>
-<!--start scripts-->
+<!--start scripts
 <script type="text/javascript">
 	$(document).ready(function () {
 		$("#footerLinks a").removeClass("externalLink");
 		toggleReportSummary('#ReportSummaryToggle', '#ReportSummary');
 		moreInfoToolTip('.informationIcon');
 	});
-</script>
+</script>-->
 <!--end scripts-->
 <!--start pageFrame div-->
 <div id="pageFrame">
@@ -51,7 +51,7 @@
 				<li>|</li>
 				<li><a target="_blank" href="#">Help</a></li>
 			</ul>
-			<div id="welcome"> November 8, 2011 </div>
+			<div id="welcome"> September 2, 2014 </div>
 		</div>
 		<!--end global navigation-->
 	</div>
@@ -69,7 +69,8 @@
 <!--- start error notification -->
     
 		<!--start award identification-->
-		<h1>Add New Organization <img id="infoBoxBtn" alt="more information about organization" src="images/ico_information.gif" class="informationIcon" /></h1>
+<h1>Public Access Proof of Concept<img id="infoBoxBtn" alt="more information about organization" src="images/ico_information.gif" class="informationIcon" /></h1>
+	
  <!-- Pop up box -->
  <div id="infoBoxPopUp" class="hide moreInfoToolTip">
 	<div class="top"><span class="popUpHeader">Header Text</strong>
@@ -78,98 +79,50 @@
 	</div>
 	<div class="bottom"></div>
 </div>
+
+<div class="container" ng-controller="AppCtrl">
+ 			<br>
+			<p class="left-align">
+				<span class="inputs">
+					&nbsp;&nbsp;&nbsp;&nbsp;<input placeholder="Type the Award ID here..." ng-model="awardId" />
+				</span>
+			
+			<button ng-click="callServer(awardId)">
+				Search Publication for Award
+			</button>
+			</p>
+			<br>
+			<br>
+			<br>
+		<p class="vert-spacing"></p>
+		<p class="vert-spacing"></p>
+		<p class="vert-spacing"></p>	
+		<div ng-show="metadata"class="pull-left span3">
+		<h2>Publications</h2><br>
+		<ul>
+			<li ng-repeat="meta in metadata.pubMetadataMap">
+
+			<a href="" ng-click="setPublication(meta.doi)">{{meta.doi}}</a></li>
+			</ul>
+		</div>	
+		<div ng-show="currentPublication" class="span6">
+		<h2>Meta Data</h2><br>
+		{{currentPublication | json}}
+		</div>
+	</div>	
+
 <!-- end pop up box -->
 		<!--end award identification-->
 		<!--start contnetContainer-->
-		<div class="contentContainer paragraphSpacing">
-		  <p><a href="#">&lt; Back to Participants</a></p>
-		  <p>&nbsp; </p>
-			<p class="vert-spacing">*Required fields</p>
-		<p class="vert-spacing"><form>
-
-<p class="form-spacing"><span class="lables">
-<label for="orgType">*Type of Partner Organization:</label></span><span class="inputs">
-<select name="orgType" id="role">
-  <option selected>-- Select One --</option>
-</select>
-</span></p>
-
-<p class="form-spacing"><span class="lables">
-  <label for="orgName">*Name:</label></span>
-<span class="inputs"><input type="text" name="orgName" value="" /></span></p>
-
-<p class="form-spacing"><span class="lables"><label for="orgLoc">*Location:</label></span>
-<span class="inputs"><input type="text" name="orgLoc" value="" /></span></p>
-
-<p class="form-spacing"><span class="lables"><label for="eMail">*E-mail Address:</label></span>
-<span class="inputs"><input type="text" name="eMail" value="" /></span></p>
-
-<p class="form-spacing"><span class="lables">
-<label for="role">*Most Senior Project Role:</label></span>
-<span class="inputs"><select name="role" id="select">
-  <option selected>-- Select One --</option>
-</select></span></P>
-
-<p class="form-spacing"><span class="lables"><label for="contributionCheck">* Partner's contribution to the project<br>
-  (identify one or more)
-</label></span>
-<span class="inputs">
-	<div id="formCheckBox" class="float-right">
-		
-					<ul>
-						<li class="clearing">
-							<div class="firstColumn">
-							    <label>
-							      <input type="checkbox" name="partnerCOntribution" value="finSupport" id="partnerCOntribution_0">
-							      Financial Support</label></div>
-                            <div class="secondColumn">
-                              <label>
-                                <input type="checkbox" name="partnerCOntribution_3" value="inKind" id="partnerCOntribution_3"> 
-                                In-kind support (e.g. partner makes software,<br><span class="indented">computers,equipment, etc., available to</span><br><span class="indented">project staff)</span></label>
-                            </div>
-						</li>
-						<li class="clearing">
-							<div class="firstColumn">
-							  <label>
-							    <input type="checkbox" name="partnerCOntribution_" value="facilities" id="partnerCOntribution_1">
-							    Facilities (e.g. project staff use the partner's<br>							    
-<span class="indented">facilities for project activivites)</span></label>
-						  </div>
-							<div class="secondColumn"><span class="firstColumn">
-							  <label>
-							    <input type="checkbox" name="partnerCOntribution_4" value="collaborative" id="partnerCOntribution_4">
-							    Collaborative research (e.g., partner's staff<br><span class="indented">work with project staff on the project)</span></label></span></div>
-						</li>
-                        	<li class="clearing">
-							<div class="firstColumn">
-							  <label>
-							    <input type="checkbox" name="partnerCOntribution_2" value="personnell" id="partnerCOntribution_2">
-						      Personnel exhanges (e.g., project staff and/or<br>
-<span class="indented">partners staff use each other's facilities, work</span><br>
-<span class="indented">at each other's site)</span></label>
-							</div>
-                            <div class="secondColumn">
-                              <label>
-                                <input type="checkbox" name="partnerCOntribution_3" value="other" id="partnerCOntribution_3">
-                                Other</label></div>
-							
-						</li>
-					</ul>
-	  </div>
-</span>
-</p>
-<p class="form-spacing">&nbsp;</p>
-<p class="form-spacing"><span class="inputs"><br />
-</span></p>
-<p class="form-spacing"><span class="lables">
-  <label for="moreContributionDetail">More detail on partner and contriubtuion (foreign or domestic):</label></span>
-  <span class="inputs"><textarea name="moreContributionDetail" cols="40" rows="10"></textarea>
-  </span></p>
+<div class="contentContainer paragraphSpacing">
+<form>
 <p class="vert-spacing">&nbsp;</p>
 <p class="form-spacing">
-  <span class="formButtonArea"><input type="submit" name="saveEntry" id="saveEntry" value="Save Entry" />
+  <span class="formButtonArea">
+  	<!--<input type="submit" name="saveEntry" id="saveEntry" value="Save Entry" />
 &nbsp;
-<input type="reset" name="Cancel" id="Cancel" value="Cancel" /></span>
+<input type="reset" name="Cancel" id="Cancel" value="Cancel" /> -->
+</span>
 </form></p>
 			
          
