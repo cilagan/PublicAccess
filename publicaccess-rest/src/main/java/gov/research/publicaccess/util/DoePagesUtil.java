@@ -1,5 +1,6 @@
 package gov.research.publicaccess.util;
 
+import gov.research.publicaccess.constants.Keys;
 import gov.research.publicaccess.model.FieldType;
 import gov.research.publicaccess.model.PublicationMetadata;
 
@@ -20,7 +21,7 @@ public class DoePagesUtil {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		Map<String, PublicationMetadata> pubMap = getPublications("1234567");
+		Map<String, PublicationMetadata> pubMap = getPublications("energy");
 		System.out.println(pubMap.toString());
 	}
 
@@ -28,7 +29,7 @@ public class DoePagesUtil {
 		Map<String, PublicationMetadata> pubMetaDataMap = new HashMap<String, PublicationMetadata>();
 		
 		try {
-	    	URL url = new URL("http://www.osti.gov/scitech/scitechxml?Title=energy");
+	    	URL url = new URL(Keys.DOE_PAGES_BASE_AWARD_ID_URL + awardId);
 			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 
 			  if (conn.getResponseCode() != 200) {
@@ -51,8 +52,8 @@ public class DoePagesUtil {
 	    	  
 	    	  switch(eventType){
 	    	  	case XMLStreamConstants.START_ELEMENT:
-	    	  		System.out.println("Start Element: " + event.asStartElement().getName().getLocalPart());
-	    	  		if("record".equals(event.asStartElement().getName().getLocalPart())){
+	    	  		//System.out.println("Start Element: " + event.asStartElement().getName().getLocalPart());
+	    	  		if(checkIfStartRecord(event)){
 	    	  			pub = new PublicationMetadata();
 	    	  		}
 	    	  		//map field type
@@ -60,13 +61,13 @@ public class DoePagesUtil {
 	    	  		System.out.println("FieldType: " +  fieldType.toString());
 	    	  		break;
 	    	  	case XMLStreamConstants.CHARACTERS:
-	    	  		System.out.println("Content: " + event.asCharacters().getData());
+	    	  		//System.out.println("Content: " + event.asCharacters().getData());
 	    	  			//map data - pass data, fieldtype, publication object
 	    	  		mapData(event, pub, fieldType);
 	    	  		break;
 	    	  	case XMLStreamConstants.END_ELEMENT:
-	    	  		System.out.println("End Element: " + event.asEndElement().getName().getLocalPart());
-	    	  		if("record".equals(event.asEndElement().getName().getLocalPart())){
+	    	  		//System.out.println("End Element: " + event.asEndElement().getName().getLocalPart());
+	    	  		if(checkIfEndRecord(event)){
 	    	  			if(pub.getDoi() != null){ // check why some doi are null
 	    	  				pubMetaDataMap.put(pub.getDoi(), pub);
 	    	  			}	
@@ -92,17 +93,48 @@ public class DoePagesUtil {
 		String content = event.asCharacters().getData();
 		
 		switch(fieldType){
-		case TITLE:
-			pubMetadata.setTitle(content);
-			break;
-		case DESCRIPTION:
-			pubMetadata.setDescription(content);
-			break;
 		case DOI:
 			pubMetadata.setDoi(content);
 			break;
+		case CREATOR:
+			pubMetadata.setCreator(content);
+			break;
+		case TITLE:
+			pubMetadata.setTitle(content);
+			break;
+		case RELATION:
+			pubMetadata.setRelation(content);
+			break;
+		case PUB_SPONSOR:
+			pubMetadata.setPublisherSponsor(content);
+			break;
+		case AWARD_ID:
+			pubMetadata.setIdentifierNSFAwardId(content);;
+			break;			
+		case DESCRIPTION:
+			pubMetadata.setDescription(content);
+			break;
+		case PEER_REVIEW_FLAG:
+			pubMetadata.setPeerReviewFlag(parseFlag(content.toString()));
+			break;
+		case NSF_FUNDED_FLAG:
+			pubMetadata.setNsfFunded(parseFlag(content.toString()));
+			break;	
 		case NOT_DEFINED:
 			break;
+		default:
+			break;
 		}
+	}
+	
+	private static boolean parseFlag(String content){
+		return "TRUE".equals(content) ? true : false;
+	}
+	
+	private static boolean checkIfStartRecord(XMLEvent event){
+		return FieldType.RECORD.getField().equals(event.asStartElement().getName().getLocalPart());
+	}
+	private static boolean checkIfEndRecord(XMLEvent event){
+		return FieldType.RECORD.getField().equals(event.asEndElement().getName().getLocalPart());
 	}
 }

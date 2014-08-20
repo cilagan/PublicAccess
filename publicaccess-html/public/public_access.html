@@ -107,7 +107,91 @@
 		</div>	
 		<div ng-show="currentPublication" class="span6">
 		<h2>Meta Data</h2><br>
-		{{currentPublication | json}}
+		<table>
+		 <caption></caption>
+		 <thead>
+		  <tr>
+		   <th> 
+		   <th> 
+		   <th> 
+		 <tbody>
+		  <tr>
+		   <th> Title: 
+		   <td>	&nbsp;
+		   <td> {{currentPublication.title}}
+		  <tr>
+		   <th> &nbsp;
+		   <td> &nbsp;
+		   <td> &nbsp;	
+		  <tr>
+		   <th> Journal or Serial Title
+		   <td> &nbsp;
+		   <td> {{currentPublication.relation}}		   
+		  <tr>
+		   <th> &nbsp;
+		   <td> &nbsp;
+		   <td> &nbsp;	
+		  <tr>
+		   <th> Creator
+		   <td> &nbsp;
+		   <td> {{currentPublication.creator}}		   	
+		  <tr>
+		   <th> &nbsp;
+		   <td> &nbsp;
+		   <td> &nbsp;
+		  <tr>
+		   <th> &nbsp;
+		   <td> &nbsp;
+		   <td> &nbsp;	
+		  <tr>
+		   <th> Agency Sponsor
+		   <td> &nbsp;
+		   <td> {{currentPublication.publisherSponsor}}
+		  <tr>
+		   <th> &nbsp;
+		   <td> &nbsp;
+		   <td> &nbsp;
+		  <tr>
+		   <th> &nbsp;
+		   <td> &nbsp;
+		   <td> &nbsp;	
+		  <tr>
+		   <th> Acknowledgement of Peer Review
+		   <td> &nbsp;
+		   <td> {{currentPublication.peerReviewFlag}}
+		  <tr>
+		   <th> &nbsp;
+		   <td> &nbsp;
+		   <td> &nbsp;	
+		  <tr>
+		   <th> Acknowledgement of Federal Funding
+		   <td> &nbsp;
+		   <td> {{currentPublication.nsfFunded}}
+		  <tr>
+		  <tr>
+		   <th> &nbsp;
+		   <td> &nbsp;
+		   <td> &nbsp;	
+		  <tr>
+		   <th> DOI
+		   <td> &nbsp;
+		   <td> <a ng-href="http://dx.doi.org/{{currentPublication.doi}}" target="_blank">
+		   			{{currentPublication.doi}}
+		   		</a>
+		  <tr>		  	
+		   <th> &nbsp;
+		   <td> &nbsp;
+		   <td> &nbsp;		   		   			   		   	
+ 		  <tr>
+		   <th> &nbsp;
+		   <td> &nbsp;
+		   <td> &nbsp;		  
+		  <tr>
+		   <th> Abstract
+		   <td> &nbsp;
+		   <td> {{currentPublication.description}}
+		</table>
+		<!--<p>{{currentPublication | json}}</p>-->
 		</div>
 	</div>	
 
