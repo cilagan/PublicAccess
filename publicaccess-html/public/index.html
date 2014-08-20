@@ -1,0 +1,87 @@
+<html ng-app>
+<head>
+	<title>Public Access Proof of Concept</title>
+	<script type="text/javascript" src="js/lib/angular.min.js"></script>
+	<script type="text/javascript" src="js/controllers/app.js"></script>
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="css/bootstrap-responsive.min.css">
+</head>
+<body>
+	<div class="container" ng-controller="AppCtrl">
+		<h1>Public Access Proof of Concept</h1>
+ 			<br>
+			Award Id: <input placeholder="Type the Award" ng-model="awardId" />
+			<button ng-click="callServer(awardId)">
+				Search Publication for AwardId
+			</button>
+			<br>
+			{{awardId}}
+			<br>
+			<br>
+		<div class="pull-left span6">
+			
+			
+				<!--<li ng-repeat="airport in airports">
+					<a href="" ng-click="setAirport(airport.code)">{{airport.code}} - {{airport.city}}</a>
+				</li>
+				<li>
+					
+				</li>-->
+				<!--<li ng-repeat = "publication in publications">
+					<a href="">Title: {{publication.title}}</a>
+					<ul>
+						<li>OSTI Id: {{publication.ostiId}}</li>
+						<li>Creator: {{publication.creator}}</li>
+						<li>Description: {{publication.description}}</li> 
+						<li>Publisher: {{publication.publisher}}</li>
+						<li>Publisher Availability: {{publication.publisherAvailability}}</li>
+						<li>Publisher Research: {{publication.publisherResearch}}</li>
+						<li>Publisher Sponsor: {{publication.publisherSponsor}}</li>
+						<li>Publisher Country: {{publication.publisherCountry}}</li>
+						<li>Date: {{publication.date}}</li>
+						<li>Language: {{publication.language}}</li>
+						<li>Type: {{publication.type}}</li>
+						<li>Type Qualifier: {{publication.typeQualifier}}</li>
+						<li>Relation: {{publication.relation}}</li>
+						<li>Coverage: {{publication.coverage}}</li>
+						<li>Format: {{publication.format}}</li>
+						<li>Identifier: {{publication.identifier}}</li>
+						<li>Identifier Report: {{publication.identifierReport}}</li>
+						<li>NSF Award Id: {{publication.identifierNSFAwardId}}</li>
+						<li>identifierOther: {{publication.identifierOther}}</li>
+						<li>DOI: {{publication.doi}}</li>
+						<li>Date Entry: {{publication.dateEntry}}</li>
+						<li>Peer Review Flag: {{publication.peerReviewFlag}}</li>
+						<li>NSF Funded: {{publication.nsfFunded}}</li>
+					</ul>
+				</li>-->
+					<ul>
+						<li ng-repeat="meta in metadata.pubMetadataMap">
+							<a href="" ng-click="setPublication(meta.doi)">{{meta.title}}</a></li>
+						<!--<li>{{meta | json}}</li> -->
+					</ul>
+		<br>
+		<br>
+		<br>
+		<br>
+		<!--
+		<h2>Raw JSON</h2>
+		<p> {{publications | json }} </p>
+		<br>
+		<p> {{metadata | json }} </p>
+		<p> {{metadata_list | json }} </p> -->
+		</div>
+		<!-- <div class="span5" ng-include src="sidebarURL"></div> 
+		<ng-include class="span5" src="sidebarURL"></ng-include>-->
+		<div class="span5" ng-include src="sidebarURL">
+
+		</div>
+		
+		<p ng-show="currentPublication">
+		Meta Data<br><br>
+		{{currentPublication | json}}
+		</p>
+	</div>
+
+</body>
+</html>

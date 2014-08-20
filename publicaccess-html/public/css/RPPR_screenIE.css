@@ -1,0 +1,20 @@
+/*Style for IE7*/
+.tabGroup .tab, .tabGroup .tab a {
+	display: inline;
+}
+
+.addingPublications .radioButtonList .secondColumn, #ReportSummary .secondColumn, #ReportSummary .totalWidth, .participantsSummaryList .partnerContributionList .secondColumn, dl dd {
+	float: none;
+}
+
+.reportPreview .supportingFiles {
+	display: inline;
+}
+
+.reportSearch dd .linearList li {
+	float: left;
+}
+
+#ParticipantsInfoPopUp dd {
+	width: 239px;
+}

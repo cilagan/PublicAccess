@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Add Products</title>
+<script src="js/jquery-1.7.1.min.js" type="text/javascript"></script>
+<script src="js/jquery-ui-1.8.18.custom.min.js" type="text/javascript"></script>
+<script src="js/RPPR_general.js" type="text/javascript"></script>
+<script src="js/displayTagAjax.js" type="text/javascript"></script>
+<link rel="stylesheet" href="css/RPPR_screen.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="css/jquery-ui-1.8.18.custom.css" type="text/css" media="screen" />
+<!--[if lte IE 7]>
+	<link rel="stylesheet" href="css/RPPR_screenIE.css" type="text/css" media="screen" />
+<![endif]-->
+<link rel="stylesheet" href="css/RPPR_print.css" type="text/css" media="print" />
+</head>
+<body>
+<!--start scripts-->
+<script type="text/javascript">
+	$(document).ready(function () {
+		$("#footerLinks a").removeClass("externalLink");
+		toggleReportSummary('#ReportSummaryToggle', '#ReportSummary');
+		moreInfoToolTip('.informationIcon');
+	});
+</script>
+<!--end scripts-->
+<!--start pageFrame div-->
+<div id="pageFrame">
+	<!--start masthead-->
+	<div id="masthead">
+		<!--start searchContainer-->
+		<div class="searchContainer">
+			<form name="searchSiteForm" method="post" action="#">
+				<input type="text" id="keyword" name="keyword" maxlength="40" class="searchField" title="search" />
+				<span class="buttonBgBorder">
+					<input type="button" title="Enter the text to search and click here" class="buttonBg" value="Search" onclick="return validateKeyword();" />
+				</span>
+			</form>
+			<a href="#">Advanced</a>
+		</div>
+		<!--end searchContainer-->
+		<a href="#" id="homelink" title="home"></a>
+		<!--start global navigation-->
+		<div id="globalNavWelcomeContainer">
+			<ul id="globalNav">
+				<li><a href="#">Home</a></li>
+				<li>|</li>
+				<li><a href="#">Contact Us</a></li>
+				<li>|</li>
+				<li><a href="#">Site Map</a></li>
+				<li>|</li>
+				<li><a target="_blank" href="#">Help</a></li>
+			</ul>
+			<div id="welcome"> November 8, 2011 </div>
+		</div>
+		<!--end global navigation-->
+	</div>
+	<!--end masthead-->
+	<!--start pageWrapper-->
+	<div id="pageWrapper">
+		<!--start controlContainer-->
+		<div class="controlContainer">
+			<ul class="siteControls">
+				<li class="printIcon"><a href="javascript: void(0)" onclick="window.print()">Print Page</a></li>
+				<li><span class="fontSizeSelector"><strong>Adjust Font Size:</strong> <a style="font-size: 100%;" href="javascript:setFontSizeRegular('pageWrapper')" id="regularFontSizeAnchor" class="fontSizeSelected">A</a> <a style="font-size: 120%;" href="javascript:setFontSizeMedium('pageWrapper')" id="mediumFontSizeAnchor" class="fontSizeUnselected">A</a> <a style="font-size: 150%;" href="javascript:setFontSizeLarge('pageWrapper')" id="largeFontSizeAnchor" class="fontSizeUnselected">A</a></span></li>
+			</ul>
+		</div>
+		<!--end controlContainer-->
+<!--- start error notification -->
+    
+		<!--start award identification-->
+		<h1>Add New Organization <img id="infoBoxBtn" alt="more information about organization" src="images/ico_information.gif" class="informationIcon" /></h1>
+ <!-- Pop up box -->
+ <div id="infoBoxPopUp" class="hide moreInfoToolTip">
+	<div class="top"><span class="popUpHeader">Header Text</strong>
+	<span class="close">&nbsp;</span></span>
+	<p class="vert-spacing">"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam."</p>
+	</div>
+	<div class="bottom"></div>
+</div>
+<!-- end pop up box -->
+		<!--end award identification-->
+		<!--start contnetContainer-->
+		<div class="contentContainer paragraphSpacing">
+		  <p><a href="#">&lt; Back to Participants</a></p>
+		  <p>&nbsp; </p>
+			<p class="vert-spacing">*Required fields</p>
+		<p class="vert-spacing"><form>
+
+<p class="form-spacing"><span class="lables">
+<label for="orgType">*Type of Partner Organization:</label></span><span class="inputs">
+<select name="orgType" id="role">
+  <option selected>-- Select One --</option>
+</select>
+</span></p>
+
+<p class="form-spacing"><span class="lables">
+  <label for="orgName">*Name:</label></span>
+<span class="inputs"><input type="text" name="orgName" value="" /></span></p>
+
+<p class="form-spacing"><span class="lables"><label for="orgLoc">*Location:</label></span>
+<span class="inputs"><input type="text" name="orgLoc" value="" /></span></p>
+
+<p class="form-spacing"><span class="lables"><label for="eMail">*E-mail Address:</label></span>
+<span class="inputs"><input type="text" name="eMail" value="" /></span></p>
+
+<p class="form-spacing"><span class="lables">
+<label for="role">*Most Senior Project Role:</label></span>
+<span class="inputs"><select name="role" id="select">
+  <option selected>-- Select One --</option>
+</select></span></P>
+
+<p class="form-spacing"><span class="lables"><label for="contributionCheck">* Partner's contribution to the project<br>
+  (identify one or more)
+</label></span>
+<span class="inputs">
+	<div id="formCheckBox" class="float-right">
+		
+					<ul>
+						<li class="clearing">
+							<div class="firstColumn">
+							    <label>
+							      <input type="checkbox" name="partnerCOntribution" value="finSupport" id="partnerCOntribution_0">
+							      Financial Support</label></div>
+                            <div class="secondColumn">
+                              <label>
+                                <input type="checkbox" name="partnerCOntribution_3" value="inKind" id="partnerCOntribution_3"> 
+                                In-kind support (e.g. partner makes software,<br><span class="indented">computers,equipment, etc., available to</span><br><span class="indented">project staff)</span></label>
+                            </div>
+						</li>
+						<li class="clearing">
+							<div class="firstColumn">
+							  <label>
+							    <input type="checkbox" name="partnerCOntribution_" value="facilities" id="partnerCOntribution_1">
+							    Facilities (e.g. project staff use the partner's<br>							    
+<span class="indented">facilities for project activivites)</span></label>
+						  </div>
+							<div class="secondColumn"><span class="firstColumn">
+							  <label>
+							    <input type="checkbox" name="partnerCOntribution_4" value="collaborative" id="partnerCOntribution_4">
+							    Collaborative research (e.g., partner's staff<br><span class="indented">work with project staff on the project)</span></label></span></div>
+						</li>
+                        	<li class="clearing">
+							<div class="firstColumn">
+							  <label>
+							    <input type="checkbox" name="partnerCOntribution_2" value="personnell" id="partnerCOntribution_2">
+						      Personnel exhanges (e.g., project staff and/or<br>
+<span class="indented">partners staff use each other's facilities, work</span><br>
+<span class="indented">at each other's site)</span></label>
+							</div>
+                            <div class="secondColumn">
+                              <label>
+                                <input type="checkbox" name="partnerCOntribution_3" value="other" id="partnerCOntribution_3">
+                                Other</label></div>
+							
+						</li>
+					</ul>
+	  </div>
+</span>
+</p>
+<p class="form-spacing">&nbsp;</p>
+<p class="form-spacing"><span class="inputs"><br />
+</span></p>
+<p class="form-spacing"><span class="lables">
+  <label for="moreContributionDetail">More detail on partner and contriubtuion (foreign or domestic):</label></span>
+  <span class="inputs"><textarea name="moreContributionDetail" cols="40" rows="10"></textarea>
+  </span></p>
+<p class="vert-spacing">&nbsp;</p>
+<p class="form-spacing">
+  <span class="formButtonArea"><input type="submit" name="saveEntry" id="saveEntry" value="Save Entry" />
+&nbsp;
+<input type="reset" name="Cancel" id="Cancel" value="Cancel" /></span>
+</form></p>
+			
+         
+<div id="ProductInfoPopUp" class="hide moreInfoToolTip">
+					  <div class="top">
+								<span class="close">&nbsp;</span>
+								<p class="vert-spacing">You and your institution are responsible for assuring that any publication including World Wide Web pages developed under or based on NSF support of your project includes an acknowledgement of that support in the following terms:</p>
+<p class="vert-spacing">"This material is based upon work supported by the National Science Foundation under Grant No. 0905390."</p>
+<p class="vert-spacing">You and your institution are also responsible for the assuring that, in any publication including World Wide Web pages which contain material based on or developed under your award, (other than a scientific article or paper appearing in a scientific, technical, or professional journal) this acknowledgement is accompanied by the following disclaimer:</p>
+<p class="vert-spacing">"Any opinions, findings, and conclusions or recommendations expressed in this material are those of the author(s) and do not necessarily reflect the views of the National Science Foundation."</p>
+		</div>
+							<div class="bottom"></div>
+		  </div>
+         
+		</div>
+	  <!--end contnetContainer-->
+	</div>
+	<!-- end pageWrapper -->
+	<!--start footer div-->
+	<div id="footer">
+		<div class="content">
+			<ul id="footerLinks">
+				<li><a href="#">Privacy Policy</a></li>
+				<li><a href="http://www.nsf.gov/policies/foia.jsp">FOIA</a></li>
+				<li><a href="http://www.nsf.gov/od/oeo/nofear/act.jsp">No Fear Act Data</a></li>
+				<li><a href="/research-portal/exit.jsp?link=http%3A%2F%2Fwww.usa.gov">USA.gov</a></li>
+				<li class="last"><a href="http://www.nsf.gov/" class="">NSF.gov</a></li>
+			</ul>
+			<p>Led by The National Science Foundation, 4201 Wilson Boulevard, Arlington, Virginia 22230, USA</p>
+		</div>
+	</div>
+	<!--end footer div-->
+</div>
+<!--end pageFrame div-->
+</body>
+</html>
