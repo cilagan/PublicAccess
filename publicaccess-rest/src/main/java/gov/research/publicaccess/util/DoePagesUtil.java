@@ -20,16 +20,48 @@ import javax.xml.stream.events.XMLEvent;
 public class DoePagesUtil {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		Map<String, PublicationMetadata> pubMap = getPublications("energy");
-		System.out.println(pubMap.toString());
+		Map<String, PublicationMetadata> pubMapAwardId = getPublicationsByAwardId("0621443");
+		System.out.println(pubMapAwardId.toString());
+		Long timestamp = new Long("1190556610000");
+		Map<String, PublicationMetadata> pubMapTimeStamp = getPublicationsByLastBatchTimeStamp(timestamp);
+		System.out.println(pubMapTimeStamp.toString());
+	}
+	
+	public static Map<String, PublicationMetadata> getPublicationsByAwardId(String awardId){
+		
+		String URL = Keys.DOE_PAGES_BASE_URL 
+				+ Keys.PARAM_IND
+				+ Keys.AWARDID_PARAM
+				+ awardId
+				+ Keys.PARAM_SEPERATOR 
+				+ Keys.ROWS_PARAM
+				+ Keys.MAX_ROWS;
+		
+		return getPublications(URL);
+	}
+	
+	public static Map<String, PublicationMetadata> getPublicationsByLastBatchTimeStamp(long timestamp){
+		
+		String URL = Keys.DOE_PAGES_BASE_URL 
+				+ Keys.PARAM_IND
+				+ Keys.TIMESTAMP_PARAM
+				+ timestamp
+				+ Keys.PARAM_SEPERATOR 
+				+ Keys.ROWS_PARAM
+				+ Keys.MAX_ROWS;
+		
+		return getPublications(URL);
 	}
 
-	public static Map<String, PublicationMetadata> getPublications(String awardId){
+	private static Map<String, PublicationMetadata> getPublications(String URL){
 		Map<String, PublicationMetadata> pubMetaDataMap = new HashMap<String, PublicationMetadata>();
 		
+		System.out.println("*****");			
+		System.out.println(URL);
+		System.out.println("*****");
+		
 		try {
-	    	URL url = new URL(Keys.DOE_PAGES_BASE_AWARD_ID_URL + awardId);
+	    	URL url = new URL(URL);
 			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 
 			  if (conn.getResponseCode() != 200) {
@@ -52,21 +84,17 @@ public class DoePagesUtil {
 	    	  
 	    	  switch(eventType){
 	    	  	case XMLStreamConstants.START_ELEMENT:
-	    	  		//System.out.println("Start Element: " + event.asStartElement().getName().getLocalPart());
 	    	  		if(checkIfStartRecord(event)){
 	    	  			pub = new PublicationMetadata();
 	    	  		}
 	    	  		//map field type
 	    	  		fieldType = FieldType.getFieldType(event.asStartElement().getName().getLocalPart());
-	    	  		System.out.println("FieldType: " +  fieldType.toString());
 	    	  		break;
 	    	  	case XMLStreamConstants.CHARACTERS:
-	    	  		//System.out.println("Content: " + event.asCharacters().getData());
 	    	  			//map data - pass data, fieldtype, publication object
 	    	  		mapData(event, pub, fieldType);
 	    	  		break;
 	    	  	case XMLStreamConstants.END_ELEMENT:
-	    	  		//System.out.println("End Element: " + event.asEndElement().getName().getLocalPart());
 	    	  		if(checkIfEndRecord(event)){
 	    	  			if(pub.getDoi() != null){ // check why some doi are null
 	    	  				pubMetaDataMap.put(pub.getDoi(), pub);
@@ -127,8 +155,8 @@ public class DoePagesUtil {
 		}
 	}
 	
-	private static boolean parseFlag(String content){
-		return "TRUE".equals(content) ? true : false;
+	private static String parseFlag(String content){
+		return "Y".equals(content) ? "Yes": "No";
 	}
 	
 	private static boolean checkIfStartRecord(XMLEvent event){

@@ -36,8 +36,8 @@ public class MockDataUtil {
 		pm.setRights(false);
 		pm.setDateEntry(null);
 		pm.setOstiId("502");
-		pm.setPeerReviewFlag(true);
-		pm.setNsfFunded(true);
+		pm.setPeerReviewFlag("Yes");
+		pm.setNsfFunded("Yes");
 		
 		return pm;
 	}

@@ -83,20 +83,19 @@
 <div class="container" ng-controller="AppCtrl">
  			<br>
  			<form class="form-search">
+	Last Run Date: &nbsp;
   <div class="input-append">
-    <input type="text" class="span5 search-query" placeholder="Type the Award ID here..." ng-model="awardId">
-    <button type="submit" class="btn" ng-click="callServer(awardId)">Search Publication for Award</button>
+
+    <input type="datetime-local" id="exampleInput" name="dateTime" ng-model="dateTime"
+      placeholder="yyyy-MM-ddTHH:mm" min="2014-01-01T00:00" max="2015-12-31T00:00" required />
+
+    <button type="submit" class="btn" ng-click="callServerBatch(dateTime)">Get Publication Data</button>
+    <span class="error" ng-show="myForm.input.$error.required">
+      Required!</span>
+  	<span class="error" ng-show="myForm.input.$error.datetimelocal">
+      Not a valid date!</span>
   </div>
 </form>
- 			<!--<div class="input-append">
-			<p>
-			&nbsp;&nbsp;&nbsp;&nbsp;<input class="span5" placeholder="Type the Award ID here..." ng-model="awardId" />	
-			<button class="btn" type="button" ng-click="callServer(awardId)">Search Publication for Award</button>
-			</p>
-			<br>
-			<br>
-			<br>
-		</div>	-->
 		<p class="vert-spacing"></p>
 		<p class="vert-spacing"></p>
 		<p class="vert-spacing"></p>	
@@ -134,10 +133,6 @@
 		   <th> Agency Sponsor
 		   <td> &nbsp;
 		   <td> {{currentPublication.publisherSponsor}}	
-		  <tr>
-		   <th> NSF Award ID
-		   <td> &nbsp;
-		   <td> {{currentPublication.identifierNSFAwardId}}			   	
 		  <tr>
 		   <th> Acknowledgement of Peer Review
 		   <td> &nbsp;

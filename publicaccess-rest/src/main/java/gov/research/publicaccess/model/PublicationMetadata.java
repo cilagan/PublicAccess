@@ -32,167 +32,219 @@ public class PublicationMetadata {
 	protected Boolean rights;
 	protected Date dateEntry;
 	protected String ostiId;
-	protected Boolean peerReviewFlag;
-	protected Boolean nsfFunded;
+	protected String peerReviewFlag;
+	protected String nsfFunded;
 	
 	/* Getter and Setter Pairs */
 	
 	public String getTitle() {
 		return title;
 	}
+
 	public void setTitle(String title) {
 		this.title = title;
 	}
+
 	public String getCreator() {
 		return creator;
 	}
+
 	public void setCreator(String creator) {
 		this.creator = creator;
 	}
+
 	public String getSubject() {
 		return subject;
 	}
+
 	public void setSubject(String subject) {
 		this.subject = subject;
 	}
+
 	public String getDescription() {
 		return description;
 	}
+
 	public void setDescription(String description) {
 		this.description = description;
 	}
+
 	public String getPublisher() {
 		return publisher;
 	}
+
 	public void setPublisher(String publisher) {
 		this.publisher = publisher;
 	}
+
 	public Boolean getPublisherAvailability() {
 		return publisherAvailability;
 	}
+
 	public void setPublisherAvailability(Boolean publisherAvailability) {
 		this.publisherAvailability = publisherAvailability;
 	}
+
 	public String getPublisherResearch() {
 		return publisherResearch;
 	}
+
 	public void setPublisherResearch(String publisherResearch) {
 		this.publisherResearch = publisherResearch;
 	}
+
 	public String getPublisherSponsor() {
 		return publisherSponsor;
 	}
+
 	public void setPublisherSponsor(String publisherSponsor) {
 		this.publisherSponsor = publisherSponsor;
 	}
+
 	public String getPublisherCountry() {
 		return publisherCountry;
 	}
+
 	public void setPublisherCountry(String publisherCountry) {
 		this.publisherCountry = publisherCountry;
 	}
+
 	public Date getDate() {
 		return date;
 	}
+
 	public void setDate(Date date) {
 		this.date = date;
 	}
+
 	public String getLanguage() {
 		return language;
 	}
+
 	public void setLanguage(String language) {
 		this.language = language;
 	}
+
 	public String getType() {
 		return type;
 	}
+
 	public void setType(String type) {
 		this.type = type;
 	}
+
 	public String getTypeQualifier() {
 		return typeQualifier;
 	}
+
 	public void setTypeQualifier(String typeQualifier) {
 		this.typeQualifier = typeQualifier;
 	}
+
 	public String getRelation() {
 		return relation;
 	}
+
 	public void setRelation(String relation) {
 		this.relation = relation;
 	}
+
 	public String getCoverage() {
 		return coverage;
 	}
+
 	public void setCoverage(String coverage) {
 		this.coverage = coverage;
 	}
+
 	public String getFormat() {
 		return format;
 	}
+
 	public void setFormat(String format) {
 		this.format = format;
 	}
+
 	public String getIdentifier() {
 		return identifier;
 	}
+
 	public void setIdentifier(String identifier) {
 		this.identifier = identifier;
 	}
+
 	public String getIdentifierReport() {
 		return identifierReport;
 	}
+
 	public void setIdentifierReport(String identifierReport) {
 		this.identifierReport = identifierReport;
 	}
+
 	public String getIdentifierNSFAwardId() {
 		return identifierNSFAwardId;
 	}
+
 	public void setIdentifierNSFAwardId(String identifierNSFAwardId) {
 		this.identifierNSFAwardId = identifierNSFAwardId;
 	}
+
 	public String getIdentifierOther() {
 		return identifierOther;
 	}
+
 	public void setIdentifierOther(String identifierOther) {
 		this.identifierOther = identifierOther;
 	}
+
 	public String getDoi() {
 		return doi;
 	}
+
 	public void setDoi(String doi) {
 		this.doi = doi;
 	}
+
 	public Boolean getRights() {
 		return rights;
 	}
+
 	public void setRights(Boolean rights) {
 		this.rights = rights;
 	}
+
 	public Date getDateEntry() {
 		return dateEntry;
 	}
+
 	public void setDateEntry(Date dateEntry) {
 		this.dateEntry = dateEntry;
 	}
+
 	public String getOstiId() {
 		return ostiId;
 	}
+
 	public void setOstiId(String ostiId) {
 		this.ostiId = ostiId;
 	}
-	public Boolean getPeerReviewFlag() {
+
+	public String getPeerReviewFlag() {
 		return peerReviewFlag;
 	}
-	public void setPeerReviewFlag(Boolean peerReviewFlag) {
+
+	public void setPeerReviewFlag(String peerReviewFlag) {
 		this.peerReviewFlag = peerReviewFlag;
 	}
-	public Boolean getNsfFunded() {
+
+	public String getNsfFunded() {
 		return nsfFunded;
 	}
-	public void setNsfFunded(Boolean nsfFunded) {
+
+	public void setNsfFunded(String nsfFunded) {
 		this.nsfFunded = nsfFunded;
-	}
+	}	
+	
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
@@ -251,8 +303,5 @@ public class PublicationMetadata {
 		builder.append("]");
 		return builder.toString();
 	}
-	
-	
-	
-	
+
 }
