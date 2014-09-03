@@ -5,6 +5,7 @@ function AppCtrl ($scope, $http) {
 
   $scope.metadata = null;
   $scope.error_message = null;
+  $scope.date = new Date();
 
   $scope.callServer = function(awardId){
     $scope.metadata = null;
