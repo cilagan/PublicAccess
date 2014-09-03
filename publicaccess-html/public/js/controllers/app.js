@@ -1,6 +1,6 @@
 function AppCtrl ($scope, $http) {                      
 
-  var host = 'http://localhost:7001'
+  var host = 'http://i-app-srvc01.ashburn.nsf.gov:7005'
   var server_url = host + '/publicaccess/rest/nsfpages/topic/'
 
   $scope.metadata = null;
